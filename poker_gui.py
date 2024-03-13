@@ -394,7 +394,7 @@ class Ui_MainWindow(QMainWindow):
         self.card_spots[self.card5] = card[0]
 
     def set_dealer(self):
-        pixmap = QPixmap(f'images/ai3.png')
+        pixmap = QPixmap(f'images/ai3.webp')
         pixmap.setDevicePixelRatio(17)
         self.label_16.setPixmap(pixmap)
 

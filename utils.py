@@ -270,6 +270,8 @@ class Hand(CompDec, Balance):
         pairs_count = [(k, v) for k, v in cv_pairs.items()]
         check_pairs = [i[1] for i in pairs_count]
         fh_cards = [*cv_pairs.most_common()]
+        # print('\n cv pairs: ', cv_pairs)
+        # print(fh_cards, '\n')
         if 4 in check_pairs:
             pair_level = 'four'
             p_card = [c for c in cards if c[:-1] == fh_cards[0][0]]
@@ -317,7 +319,6 @@ class Hand(CompDec, Balance):
             sub_cards = self.restack_cards(sub_cards)
             pm_cards.extend(sub_cards)
             res_cards = pm_cards
-
             sc_crds2 = [i for i in sc_crds][:3]
             mxs = 0
             for ix, sc in enumerate(sc_crds2):
@@ -349,6 +350,7 @@ class Hand(CompDec, Balance):
                     m_card2 = [c for c in cards if c[:-1] == m_card[0]]
                     p_cards.append((m_card))
                 else:
+                    # print(fh_cards)
                     rs_card = list(fh_cards[2:][0])
                     m_card2 = [c for c in cards if c[:-1] == f'{rs_card[0]}']
                     m_card = self.max_card_calc(rs_card)
