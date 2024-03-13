@@ -4,12 +4,13 @@ __pycache__/
 *$py.class
 
 file
+.gitignore
 .DS_Store
 *.icns
 # C extensions
 *.so
+test.py
 
-exau_filters/
 # Distribution / packaging
 .Python
 build/

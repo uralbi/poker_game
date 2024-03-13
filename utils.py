@@ -133,7 +133,7 @@ class Hand(CompDec, Balance):
         my_cards = self.cards[:2]
         comm_cards = self.cards[2:]
         comm_strength = self.playing_cards(comm_cards)
-        print('comm_strength is', comm_strength)
+        # print('comm_strength is', comm_strength)
 
     def clear(self):
         self.cards = []
@@ -344,12 +344,18 @@ class Hand(CompDec, Balance):
                 res_cards = [c for c in cards if c[:-1] in [k[0] for k in p_cards]]
                 res_cards = self.restack_cards(res_cards)
                 rs_cards = fh_cards[2:]
-                m_card = max(rs_cards, key=lambda x: self.max_card_calc(x))
-                p_cards.append((m_card))
-                m_card2 = [c for c in cards if c[:-1] == m_card[0]]
+                if len(rs_cards) > 1:
+                    m_card = max(rs_cards, key=lambda x: self.max_card_calc(x))
+                    m_card2 = [c for c in cards if c[:-1] == m_card[0]]
+                    p_cards.append((m_card))
+                else:
+                    rs_card = list(fh_cards[2:][0])
+                    m_card2 = [c for c in cards if c[:-1] == f'{rs_card[0]}']
+                    m_card = self.max_card_calc(rs_card)
+                    p_cards.append((f'{m_card}',0))
                 res_cards.append(*m_card2)
                 mxs = 0
-                for ix,k in enumerate(p_cards):
+                for ix, k in enumerate(p_cards):
                     mxs += self.max_card_calc(k)*(100**(2-ix))
                 score = mxs
             else:
